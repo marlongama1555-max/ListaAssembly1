@@ -1,0 +1,737 @@
+.data
+msg1: .asciiz "Digite a largura: "
+msg2: .asciiz "Digite o comprimento: "
+msg3: .asciiz "Area do terreno: "
+
+.text
+.globl main
+
+main:
+    # Ler largura
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler comprimento
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Calcular area = largura * comprimento
+    mul $t2, $t0, $t1
+
+    # Exibir resultado
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    li $v0, 1
+    move $a0, $t2
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Quantidade de camisetas pequenas: "
+msg2: .asciiz "Quantidade de camisetas medias: "
+msg3: .asciiz "Quantidade de camisetas grandes: "
+msg4: .asciiz "Valor arrecadado: R$ "
+
+.text
+.globl main
+
+main:
+    # Ler quantidade de camisetas pequenas
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler quantidade de camisetas medias
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Ler quantidade de camisetas grandes
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t2, $v0
+
+    # Pequenas: quantidade * 10
+    mul $t3, $t0, 10
+
+    # Medias: quantidade * 12
+    mul $t4, $t1, 12
+
+    # Grandes: quantidade * 15
+    mul $t5, $t2, 15
+
+    # Somar os valores
+    add $t6, $t3, $t4
+    add $t6, $t6, $t5
+
+    # Exibir resultado
+    li $v0, 4
+    la $a0, msg4
+    syscall
+
+    li $v0, 1
+    move $a0, $t6
+    syscall
+
+    # Encerrar programa
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Horas normais trabalhadas: "
+msg2: .asciiz "Horas extras trabalhadas: "
+msg3: .asciiz "Desconto: R$ "
+msg4: .asciiz "Salario bruto: R$ "
+msg5: .asciiz "Salario liquido: R$ "
+
+.text
+.globl main
+
+main:
+    # Ler horas normais
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler horas extras
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Calcular pagamento das horas normais
+    mul $t2, $t0, 10
+
+    # Calcular pagamento das horas extras
+    mul $t3, $t1, 15
+
+    # Salario bruto = normal + extra
+    add $t4, $t2, $t3
+
+    # Ler desconto
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t5, $v0
+
+    # Salario liquido = bruto - desconto
+    sub $t6, $t4, $t5
+
+    # Exibir salario bruto
+    li $v0, 4
+    la $a0, msg4
+    syscall
+
+    li $v0, 1
+    move $a0, $t4
+    syscall
+
+    # Exibir salario liquido
+    li $v0, 4
+    la $a0, msg5
+    syscall
+
+    li $v0, 1
+    move $a0, $t6
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Base maior: "
+msg2: .asciiz "Base menor: "
+msg3: .asciiz "Altura: "
+msg4: .asciiz "Area do trapezio: "
+
+.text
+.globl main
+
+main:
+    # Ler base maior
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler base menor
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Ler altura
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t2, $v0
+
+    # Somar base maior + base menor
+    add $t3, $t0, $t1
+
+    # Multiplicar pela altura
+    mul $t4, $t3, $t2
+
+    # Dividir por 2
+    li $t5, 2
+    div $t4, $t5
+    mflo $t6
+
+    # Mostrar resultado
+    li $v0, 4
+    la $a0, msg4
+    syscall
+
+    li $v0, 1
+    move $a0, $t6
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Digite o primeiro cateto: "
+msg2: .asciiz "Digite o segundo cateto: "
+msg3: .asciiz "Hipotenusa: "
+
+.text
+.globl main
+
+main:
+    # Ler primeiro cateto
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler segundo cateto
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Calcular cateto1²
+    mul $t2, $t0, $t0
+
+    # Calcular cateto2²
+    mul $t3, $t1, $t1
+
+    # Somar os quadrados
+    add $t4, $t2, $t3
+
+    # Converter para ponto flutuante
+    mtc1 $t4, $f0
+    cvt.s.w $f0, $f0
+
+    # Calcular raiz quadrada
+    sqrt.s $f2, $f0
+
+    # Mostrar mensagem
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    # Mostrar hipotenusa
+    mov.s $f12, $f2
+    li $v0, 2
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Digite o valor de A: "
+msg2: .asciiz "Digite o valor de B: "
+msg3: .asciiz "Valor de C: "
+
+.text
+.globl main
+
+main:
+    # Ler A
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler B
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Verificar se A == B
+    beq $t0, $t1, iguais
+
+    # Caso A seja diferente de B
+    mul $t2, $t0, $t1
+    j mostrar
+
+iguais:
+    # Caso A seja igual a B
+    add $t2, $t0, $t1
+
+mostrar:
+    # Mostrar mensagem
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    # Mostrar C
+    li $v0, 1
+    move $a0, $t2
+    syscall
+
+    # Encerrar programa
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Digite um valor: "
+msg2: .asciiz "Resultado: "
+
+.text
+.globl main
+
+main:
+    # Ler o valor
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Dividir por 2 para verificar se e par
+    li $t1, 2
+    div $t0, $t1
+    mfhi $t2              # $t2 recebe o resto da divisao
+
+    # Se resto = 0, o numero e par
+    beq $t2, $zero, par
+
+    # Numero impar: soma 8
+    addi $t0, $t0, 8
+    j mostrar
+
+par:
+    # Numero par: soma 5
+    addi $t0, $t0, 5
+
+mostrar:
+    # Mostrar mensagem
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    # Mostrar resultado
+    li $v0, 1
+    move $a0, $t0
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Digite um numero: "
+msg2: .asciiz "Resultado: "
+
+.text
+.globl main
+
+main:
+    # Ler o numero
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Verificar se o numero e positivo
+    bgt $t0, $zero, positivo
+
+    # Se for negativo, multiplicar por 3
+    mul $t0, $t0, 3
+    j mostrar
+
+positivo:
+    # Se for positivo, multiplicar por 2
+    mul $t0, $t0, 2
+
+mostrar:
+    # Mostrar mensagem
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    # Mostrar resultado
+    li $v0, 1
+    move $a0, $t0
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Digite o primeiro numero: "
+msg2: .asciiz "Digite o segundo numero (diferente de 0): "
+msg3: .asciiz "Divisao: "
+
+.text
+.globl main
+
+main:
+    # Ler o primeiro numero (A)
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+ler_b:
+    # Ler o segundo numero (B)
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Verificar se B e zero
+    beq $t1, $zero, ler_b
+
+    # Fazer A / B
+    div $t0, $t1
+    mflo $t2
+
+    # Mostrar mensagem
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    # Mostrar resultado
+    li $v0, 1
+    move $a0, $t2
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg1: .asciiz "Digite o primeiro numero: "
+msg2: .asciiz "Digite o segundo numero: "
+msg3: .asciiz "Resto da divisao: "
+
+.text
+.globl main
+
+main:
+    # Ler o primeiro numero
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    # Ler o segundo numero
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    # Verificar qual e o maior
+    bgt $t0, $t1, primeiro_maior
+
+    # Segundo numero e maior
+    move $t2, $t1       # $t2 = maior
+    move $t3, $t0       # $t3 = menor
+    j calcular
+
+primeiro_maior:
+    move $t2, $t0       # $t2 = maior
+    move $t3, $t1       # $t3 = menor
+
+calcular:
+    # Quociente = maior / menor
+    div $t2, $t3
+    mflo $t4             # $t4 = quociente
+
+    # Multiplicar quociente pelo menor
+    mul $t5, $t4, $t3
+
+    # Resto = maior - (quociente * menor)
+    sub $t6, $t2, $t5
+
+    # Mostrar resultado
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    li $v0, 1
+    move $a0, $t6
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg:    .asciiz "Digite um numero (-1 para encerrar): "
+msg0:   .asciiz "\n[0-25]: "
+msg1:   .asciiz "\n[26-50]: "
+msg2:   .asciiz "\n[51-75]: "
+msg3:   .asciiz "\n[76-100]: "
+
+.text
+.globl main
+
+main:
+    # Inicializar contadores
+    li $t0, 0       # contador [0-25]
+    li $t1, 0       # contador [26-50]
+    li $t2, 0       # contador [51-75]
+    li $t3, 0       # contador [76-100]
+
+ler:
+    # Pedir numero
+    li $v0, 4
+    la $a0, msg
+    syscall
+
+    # Ler numero
+    li $v0, 5
+    syscall
+    move $t4, $v0
+
+    # Se for negativo, encerra
+    bltz $t4, fim
+
+    # Verificar se esta entre 0 e 25
+    li $t5, 25
+    ble $t4, $t5, intervalo_0
+
+    # Verificar se esta entre 26 e 50
+    li $t5, 50
+    ble $t4, $t5, intervalo_1
+
+    # Verificar se esta entre 51 e 75
+    li $t5, 75
+    ble $t4, $t5, intervalo_2
+
+    # Verificar se esta entre 76 e 100
+    li $t5, 100
+    ble $t4, $t5, intervalo_3
+
+    # Se for maior que 100, ignora e pede outro
+    j ler
+
+intervalo_0:
+    addi $t0, $t0, 1
+    j ler
+
+intervalo_1:
+    addi $t1, $t1, 1
+    j ler
+
+intervalo_2:
+    addi $t2, $t2, 1
+    j ler
+
+intervalo_3:
+    addi $t3, $t3, 1
+    j ler
+
+fim:
+    # Mostrar quantidade [0-25]
+    li $v0, 4
+    la $a0, msg0
+    syscall
+
+    li $v0, 1
+    move $a0, $t0
+    syscall
+
+    # Mostrar quantidade [26-50]
+    li $v0, 4
+    la $a0, msg1
+    syscall
+
+    li $v0, 1
+    move $a0, $t1
+    syscall
+
+    # Mostrar quantidade [51-75]
+    li $v0, 4
+    la $a0, msg2
+    syscall
+
+    li $v0, 1
+    move $a0, $t2
+    syscall
+
+    # Mostrar quantidade [76-100]
+    li $v0, 4
+    la $a0, msg3
+    syscall
+
+    li $v0, 1
+    move $a0, $t3
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
+    
+    .data
+msg:     .asciiz "Digite a altura em cm: "
+msgMenor: .asciiz "\nMenor altura: "
+msgMaior: .asciiz "\nMaior altura: "
+
+.text
+.globl main
+
+main:
+    # Ler a primeira altura
+    li $v0, 4
+    la $a0, msg
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t0, $v0       # $t0 = menor altura
+    move $t1, $v0       # $t1 = maior altura
+
+    # Contador: ja lemos 1 pessoa
+    li $t2, 1
+
+ler:
+    # Verificar se ja foram lidas 15 pessoas
+    li $t3, 15
+    beq $t2, $t3, mostrar
+
+    # Ler proxima altura
+    li $v0, 4
+    la $a0, msg
+    syscall
+
+    li $v0, 5
+    syscall
+    move $t4, $v0
+
+    # Verificar se a altura e menor
+    blt $t4, $t0, menor
+
+    # Verificar se a altura e maior
+    bgt $t4, $t1, maior
+
+    # Se nao for menor nem maior
+    addi $t2, $t2, 1
+    j ler
+
+menor:
+    move $t0, $t4
+    addi $t2, $t2, 1
+    j ler
+
+maior:
+    move $t1, $t4
+    addi $t2, $t2, 1
+    j ler
+
+mostrar:
+    # Mostrar menor altura
+    li $v0, 4
+    la $a0, msgMenor
+    syscall
+
+    li $v0, 1
+    move $a0, $t0
+    syscall
+
+    # Mostrar maior altura
+    li $v0, 4
+    la $a0, msgMaior
+    syscall
+
+    li $v0, 1
+    move $a0, $t1
+    syscall
+
+    # Encerrar
+    li $v0, 10
+    syscall
